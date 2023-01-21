@@ -1,0 +1,22 @@
+{
+  "name": "@jimenezraul/auth",
+  "version": "1.0.0",
+  "description": "Auth is a module that allows you to authenticate users",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Auth",
+    "Authentication",
+    "Login",
+    "Server authentication",
+    "Server login",
+    "Express auth"
+  ],
+  "author": "Raul Jimenez",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.0.0 || ^17.0.0 || ^16.8.0"
+  },
+}
