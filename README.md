@@ -1,4 +1,8 @@
-# Auth
+<p align="center">
+    <img src="./img/auth-logo.png" alt="Parsifal logo" height="128">
+</p>
+
+<h3 align="center">Auth</h3>
 
 ## Description
 
@@ -12,17 +16,16 @@ Some other functionalities are:
 
 ## Table of Contents
 
-- [Auth](#auth)
-  - [Description](#description)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Adding middleware to the express app](#adding-middleware-to-the-express-app)
-  - [Generate Access Token and Refresh Token](#generate-access-token-and-refresh-token)
-  - [Validate Token](#validate-token)
-  - [License](#license)
-  - [Author](#author)
-  - [Website](#website)
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Adding middleware to the express app](#adding-middleware-to-the-express-app)
+- [Generate Access Token and Refresh Token](#generate-access-token-and-refresh-token)
+- [Validate Token](#validate-token)
+- [License](#license)
+- [Author](#author)
+- [Website](#website)
 
 ## Installation
 
@@ -119,7 +122,7 @@ app.post('/api/v1/refresh', (req, res) => {
     const refreshToken = req.headers['x-refresh-token'];
 
   // Validate Refresh Token
-  const isValid = authMiddleware.validateToken(refreshToken);
+  const isValid = authMiddleware.validateToken(refreshToken); // returns true or false
 
   if(!isValid){
     res.status(401).json({ message: 'Invalid token' });
@@ -133,7 +136,7 @@ app.post('/api/v1/refresh', (req, res) => {
     const accessToken = authMiddleware.generateToken(user, "accessToken");
   }
 
-"... more code"
+//... more code
 ```
 
 ## License
