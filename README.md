@@ -39,6 +39,13 @@ yarn add @jimenezraul/auth
 
 ## Usage
 
+Create a .env file in the root folder and add the following code:
+
+```bash
+ACCESS_TOKEN_SECRET=your_access_token_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+```
+
 Create a file called `allowedOrigins.js` in the config folder and add the allowed origins. This is used to check if the origin of the request is allowed. You can add localhost for development and the production url for production.
 
 ```javascript
