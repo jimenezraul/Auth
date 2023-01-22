@@ -120,8 +120,8 @@ In the `routes.js` file, add the following code:
 const authMiddleware = require('./middleware/auth');
 
 app.post('/api/v1/refresh', (req, res) => {
- // check if the refresh token is passed in the header
-  const refreshToken = req.headers['x-refresh-token'];
+ // check if the refresh token is passed in the cookie
+  const refreshToken = req.cookies.refreshToken;
 
   // Validate Refresh Token
   const isValid = authMiddleware.validateToken(refreshToken); // returns true or false
