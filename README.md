@@ -1,8 +1,6 @@
 <p align="center">
-    <img src="./img/auth-logo.png" alt="Parsifal logo" height="128">
+    <img src="./img/auth-logo.png" alt="Parsifal logo" height="400">
 </p>
-
-<h3 align="center">Auth</h3>
 
 ## Description
 
@@ -91,6 +89,8 @@ app.get('/api/v1/protected', (req, res) => {
 In the `routes.js` file, add the following code:
 
 ```javascript
+const authMiddleware = require('./middleware/auth');
+
 app.post('/api/v1/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -117,9 +117,11 @@ app.post('/api/v1/login', (req, res) => {
 In the `routes.js` file, add the following code:
 
 ```javascript
+const authMiddleware = require('./middleware/auth');
+
 app.post('/api/v1/refresh', (req, res) => {
  // check if the refresh token is passed in the header
-    const refreshToken = req.headers['x-refresh-token'];
+  const refreshToken = req.headers['x-refresh-token'];
 
   // Validate Refresh Token
   const isValid = authMiddleware.validateToken(refreshToken); // returns true or false

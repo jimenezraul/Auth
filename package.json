@@ -1,6 +1,6 @@
 {
   "name": "@jimenezraul/auth",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "types": "index.d.ts",
   "typesVersions": {
     "<=4.0": {
