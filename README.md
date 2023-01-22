@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./img/auth-logo.png" alt="Parsifal logo" height="400">
+    <img src="./img/auth-logo.png" alt="Parsifal logo" width="200">
 </p>
 
 ## Description
