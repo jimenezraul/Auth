@@ -25,4 +25,6 @@ console.log(refreshToken); // return a valid refresh token
 
 console.log(auth.validateToken(refreshToken)); // return true if token is valid
 
+console.log(auth); // return the class instance
+
 module.exports = auth;
