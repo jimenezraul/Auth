@@ -110,11 +110,18 @@ app.post('/api/v1/login', (req, res) => {
       role: 'admin',
     };
 
-    // Generate Access Token and Refresh Token
-    const accessToken = authMiddleware.generateToken(user, 'accessToken');
-    const refreshToken = authMiddleware.generateToken(user, 'refreshToken');
+    tokenNames = ['access_token', 'refresh_token'];
 
-    res.status(200).json({ accessToken, refreshToken });
+    tokenArray = [];
+    // Generate Access Token and Refresh Token
+    tokenNames.forEach((tokenName) => {
+      const token = authMiddleware.generateToken(user, tokenName);
+      tokenArray.push(token);
+    });
+
+    res
+      .status(200)
+      .json({ accessToken: tokenArray[0], refreshToken: tokenArray[1] });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
