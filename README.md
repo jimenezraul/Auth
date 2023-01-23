@@ -121,7 +121,7 @@ app.post('/api/v1/login', (req, res) => {
 
     res
       .status(200)
-      .json({ accessToken: tokenArray[0], refreshToken: tokenArray[1] });
+      .json({ access_token: tokenArray[0], refresh_token: tokenArray[1] });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
@@ -137,7 +137,7 @@ const authMiddleware = require('./middleware/auth');
 
 app.post('/api/v1/refresh', (req, res) => {
  // check if the refresh token is passed in the cookie
-  const refreshToken = req.cookies.refreshToken;
+  const refreshToken = req.cookies.refresh_token;
 
   // Validate Refresh Token
   const isValid = authMiddleware.validateToken(refreshToken); // returns true or false
@@ -151,10 +151,9 @@ app.post('/api/v1/refresh', (req, res) => {
     };
 
     // Generate Access Token and Refresh Token
-    const accessToken = authMiddleware.generateToken(user, "accessToken");
+    const accessToken = authMiddleware.generateToken(user, "access_token");
+    //... rest of the code
   }
-
-//... rest of the code
 ```
 
 ## How to use Cookies
@@ -204,7 +203,7 @@ app.post('/api/v1/refresh', (req, res) => {
 
     res
       .status(200)
-      .json({ accessToken: tokenArray[0], refreshToken: tokenArray[1] });
+      .json({ access_token: tokenArray[0], refresh_token: tokenArray[1] });
   }
 });
 ```
