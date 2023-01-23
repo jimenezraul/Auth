@@ -4,7 +4,7 @@
 
 ## Description
 
-This is a Auth module that provides a simple way to authenticate users. It will check for token in the header and validate it. If the token is valid, it will set the user in the request object.
+This is a Auth module that provides a simple way to check if a user is authenticated from the access_token in the cookie. It also provides a middleware to check if the origin of the request is allowed. If the access_token is expired, it will generate a new access token if the refresh token is valid.
 
 Some other functionalities are:
 
@@ -21,6 +21,7 @@ Some other functionalities are:
 - [Adding middleware to the express app](#adding-middleware-to-the-express-app)
 - [Generate Access Token and Refresh Token](#generate-access-token-and-refresh-token)
 - [Validate Token](#validate-token)
+- [How to use Cookies](#how-to-use-cookies)
 - [License](#license)
 - [Author](#author)
 - [Website](#website)
@@ -60,7 +61,7 @@ Create another file called `auth.js` in the middleware folder and add the follow
 
 ```javascript
 const allowedOrigins = require('../config/allowedOrigins'); // List of allowed origins
-const Auth = require('@jimenezraul/Auth'); // Auth module
+const { Auth } = require('@jimenezraul/Auth'); // Auth module
 
 const authMiddleware = new Auth('15m', '7d', allowedOrigins); // Initialize Auth module with (access token expiration time, refresh token expiration time, allowed origins)
 
@@ -145,7 +146,59 @@ app.post('/api/v1/refresh', (req, res) => {
     const accessToken = authMiddleware.generateToken(user, "accessToken");
   }
 
-//... more code
+//... rest of the code
+```
+
+## How to use Cookies
+
+Create a file called `cookies.js` in the middleware folder and add the following code:
+
+```javascript
+const { Cookies } = require('@jimenezraul/Auth'); // Auth module
+
+const cookies = new Cookies(); // Initialize Cookies module
+
+module.exports = cookies;
+```
+
+Import the cookies in the `routes.js` file and add the following code:
+
+```javascript
+const cookies = require('./middleware/cookies');
+const authMiddleware = require('./middleware/auth');
+
+app.post('/api/v1/refresh', (req, res) => {
+  // check if the refresh token is passed in the cookie
+  const refreshToken = req.cookies.refreshToken;
+
+  // Validate Refresh Token
+  const isValid = authMiddleware.validateToken(refreshToken); // returns true or false
+
+  if (!isValid) {
+    res.status(401).json({ message: 'Invalid token' });
+  } else {
+    // Get the user from the database that matches that refresh token
+    const user = {
+      username: 'admin',
+      role: 'admin',
+    }; // example of a user object
+
+    const tokens = ['access_token', 'refresh_token'];
+
+    let tokenArray = [];
+
+    // Generate Access Token and Refresh Token
+    tokens.map((token) => {
+      const token = authMiddleware.generateToken(user, token); // generate a token
+      tokenArray.push(token); // add the token to the array
+      cookies.setCookie(res, token); // set the cookie
+    });
+
+    res
+      .status(200)
+      .json({ accessToken: tokenArray[0], refreshToken: tokenArray[1] });
+  }
+});
 ```
 
 ## License
