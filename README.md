@@ -15,7 +15,7 @@ Some other functionalities are:
   - `validateToken(refresh_token)`
 - Cookies
   - `getCookie({req}, cookieName)`
-  - `getSingedCookie({req}, cookieName)`
+  - `getSignedCookie({req}, cookieName)`
   - `setCookie({res}, cookieName, cookieValue, options)`
   - `removeCookie({res}, cookieName, options)`
 
@@ -239,7 +239,7 @@ const cookies = require('./middleware/cookies');
 
 app.post('/api/v1/refresh', (req, res) => {
   // Now you can use the signed cookies
-  const refreshToken = cookies.getSingedCookie(req, 'refresh_token');
+  const refreshToken = cookies.getSignedCookie(req, 'refresh_token');
 
   // rest of the code
 });
