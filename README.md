@@ -1,10 +1,10 @@
 <p align="center">
-    <img src="./img/auth-logo.png" alt="Parsifal logo" width="200">
+    <img src="./img/auth-logo.png" alt="Parsifal logo" width="250">
 </p>
 
 ## Description
 
-This is a Auth module that provides a simple way to check if a user is authenticated from the access_token in the cookie. It also provides a middleware to check if the origin of the request is allowed. If the access_token is expired, it will generate a new access token if the refresh token is valid.
+This is a Auth module that provides a simple way to check if a user is authenticated. Every route that you want to protect you check if a user is passed in the request object. If the user is not passed, it means that the token is not valid or the user has not been authenticated yet. It also provides a middleware to check if the origin of the request is allowed. If the access_token is expired, it will generate a new access token if the refresh token is valid.
 
 Some other functionalities are:
 
