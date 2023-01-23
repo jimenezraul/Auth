@@ -9,15 +9,15 @@ This is a Auth module that provides a simple way to check if a user is authentic
 Some other functionalities are:
 
 - Auth
-  - `auth({req})`
-  - `generateToken(user, tokenName)`
-  - `credentials({req, res, next})`
-  - `validateToken(refresh_token)`
+  - `auth`
+  - `generateToken`
+  - `credentials`
+  - `validateToken`
 - Cookies
-  - `getCookie({req}, cookieName)`
-  - `getSignedCookie({req}, cookieName)`
-  - `setCookie({res}, cookieName, cookieValue, options)`
-  - `removeCookie({res}, cookieName, options)`
+  - `getCookie`
+  - `getSignedCookie`
+  - `setCookie`
+  - `removeCookie`
 
 ## Table of Contents
 
