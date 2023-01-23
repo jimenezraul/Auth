@@ -11,6 +11,7 @@ Some other functionalities are:
 - Generate Access Token and Refresh Token
 - Validate Token
 - Credentials
+- Cookies
 
 ## Table of Contents
 
