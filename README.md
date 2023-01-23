@@ -8,10 +8,16 @@ This is a Auth module that provides a simple way to check if a user is authentic
 
 Some other functionalities are:
 
-- Generate Access Token and Refresh Token
-- Validate Token
-- Credentials
+- Auth
+  - `auth({req})`
+  - `generateToken(user, tokenName)`
+  - `credentials({req, res, next})`
+  - `validateToken(refresh_token)`
 - Cookies
+  - `getCookie({req}, cookieName)`
+  - `getSingedCookie({req}, cookieName)`
+  - `setCookie({res}, cookieName, cookieValue, options)`
+  - `removeCookie({res}, cookieName, options)`
 
 ## Table of Contents
 
@@ -23,6 +29,7 @@ Some other functionalities are:
 - [Generate Access Token and Refresh Token](#generate-access-token-and-refresh-token)
 - [Validate Token](#validate-token)
 - [How to use Cookies](#how-to-use-cookies)
+- [How to use signed cookies](#how-to-use-signed-cookies)
 - [License](#license)
 - [Author](#author)
 - [Website](#website)
@@ -207,6 +214,37 @@ app.post('/api/v1/refresh', (req, res) => {
   }
 });
 ```
+
+## How to use signed cookies
+
+To sign the cookies you have to install the `cookie-parser` package:
+
+```bash
+npm install cookie-parser
+```
+
+Set the secret in the `server.js` file:
+
+```javascript
+const cookieParser = require('cookie-parser');
+
+// add the cookie parser after initializing the express app
+app.use(cookieParser('yoursecret'));
+```
+
+Now you can use the signed cookies:
+
+```javascript
+const cookies = require('./middleware/cookies');
+
+app.post('/api/v1/refresh', (req, res) => {
+  // Now you can use the signed cookies
+  const refreshToken = cookies.getSingedCookie(req, 'refresh_token');
+
+  // rest of the code
+});
+```
+
 
 ## License
 
