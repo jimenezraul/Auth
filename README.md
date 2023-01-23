@@ -195,10 +195,10 @@ app.post('/api/v1/refresh', (req, res) => {
     let tokenArray = [];
 
     // Generate Access Token and Refresh Token
-    tokens.map((token) => {
-      const token = authMiddleware.generateToken(user, token); // generate a token
+    tokens.forEach((tokenName) => {
+      const token = authMiddleware.generateToken(user, tokenName); // generate a token
       tokenArray.push(token); // add the token to the array
-      cookies.setCookie(res, token); // set the cookie
+      cookies.setCookie(res, tokenName, token); // set the cookie
     });
 
     res
