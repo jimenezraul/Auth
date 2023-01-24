@@ -183,7 +183,7 @@ const authMiddleware = require('./middleware/auth');
 
 app.post('/api/v1/refresh', (req, res) => {
   // check if the refresh token is passed in the cookie
-  const refreshToken = req.cookies.refreshToken;
+  const refreshToken = req.cookies.refresh_token;
 
   // Validate Refresh Token
   const isValid = authMiddleware.validateToken(refreshToken); // returns true or false
