@@ -15,7 +15,7 @@ test('Auth.auth', () => {
   };
   const res = {};
   const auth = new Auth('1m', '1d', ['http://localhost:3000']);
-  const userAuth = auth.auth(req);
+  const userAuth = auth.auth({req, res});
   // expected to return req
   expect(userAuth).toEqual(req);
 });
